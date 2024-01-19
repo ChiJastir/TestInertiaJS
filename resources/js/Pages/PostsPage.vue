@@ -44,7 +44,11 @@ function deletePostFromDatabase(id){
             <h2>Добавить пост</h2>
             <form class="add-post" @submit.prevent="addPostInDatabase($page.props.user)">
                 <my-input v-model:value="form.title" placeholder="Название"/>
+                <p v-if="form.errors.title" class="error">{{ form.errors.title }}</p>
+
                 <my-input v-model:value="form.content" placeholder="Контент"/>
+                <p v-if="form.errors.content" class="error">{{ form.errors.content }}</p>
+
                 <my-button style="align-self: end">Добавить</my-button>
             </form>
         </div>
@@ -98,5 +102,10 @@ function deletePostFromDatabase(id){
         font-size: 24px;
         color: #5583ff;
     }
+}
+
+.error{
+    color: red;
+    margin: 0;
 }
 </style>
