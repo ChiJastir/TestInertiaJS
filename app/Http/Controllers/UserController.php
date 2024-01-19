@@ -20,9 +20,9 @@ class UserController extends Controller
 
         $user = User::query()->insert(
             $request->validate([
-                'name' => ['required'],
+                'name' => ['required', 'min:3'],
                 'email' => ['required', 'email', Rule::unique('users')],
-                'password' => ['required'],
+                'password' => ['required', 'string', 'min:5']
             ])
         );
 

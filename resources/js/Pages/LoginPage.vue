@@ -20,8 +20,12 @@ function login(){
         <h1>Вход</h1>
         <form class="login-form" @submit.prevent="login">
             <my-input placeholder="Почта" v-model:value="form.email"/>
+            <p v-if="form.errors.email" class="error">{{ form.errors.email }}</p>
+
             <my-input placeholder="Пороль" v-model:value="form.password"/>
-            <my-button>Создать</my-button>
+            <p v-if="form.errors.password" class="error">{{ form.errors.password }}</p>
+
+            <my-button>Войти</my-button>
         </form>
         <p>Нет аккаута? <Link href="/registration">Зарегистрироваться</Link></p>
     </Layout>
@@ -32,5 +36,10 @@ function login(){
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.error{
+    color: red;
+    margin: 0;
 }
 </style>

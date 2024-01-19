@@ -20,9 +20,15 @@ function createUser(){
         <h1>Регистрация</h1>
         <form class="registration-form" @submit.prevent="createUser">
             <my-input placeholder="Имя пользователя" v-model:value="form.name"/>
+            <p v-if="form.errors.name" class="error">{{ form.errors.name }}</p>
+
             <my-input placeholder="Почта" v-model:value="form.email"/>
+            <p v-if="form.errors.email" class="error">{{ form.errors.email }}</p>
+
             <my-input placeholder="Пороль" v-model:value="form.password"/>
-            <my-button>Создать</my-button>
+            <p v-if="form.errors.password" class="error">{{ form.errors.password }}</p>
+
+            <my-button>Зарегистрироваться</my-button>
         </form>
         <p>Есть аккаунт? <Link href="/login">Войти</Link></p>
     </Layout>
@@ -33,5 +39,10 @@ function createUser(){
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.error{
+    color: red;
+    margin: 0;
 }
 </style>
