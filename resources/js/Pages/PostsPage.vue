@@ -55,7 +55,7 @@ function deletePostFromDatabase(id){
                 <p class="content">{{ post.content }}</p>
                 <p>Автор: {{ post.user.name }}</p>
             </div>
-            <my-button v-if="$page.props.user" @click="deletePostFromDatabase(post.id)" class="delete-button">Удалить</my-button>
+            <my-button v-if="$page.props.user?.id === post.user.id" @click="deletePostFromDatabase(post.id)" class="delete-button">Удалить</my-button>
         </div>
     </layout>
 </template>
