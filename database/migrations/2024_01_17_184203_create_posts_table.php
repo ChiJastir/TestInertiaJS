@@ -17,9 +17,15 @@ return new class extends Migration
             $table->text('content');
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id');
+            /*$table->unsignedBigInteger('user_id');
             $table->index('user_id', 'post_user_idx');
-            $table->foreign('user_id', 'post_user_fk')->on('users')->references('id');
+            $table->foreign('user_id', 'post_user_fk')->on('users')->references('id');*/
+
+            // более простая запись внешнего ключа
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 
