@@ -23,4 +23,4 @@ Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->
 
 Route::get('/', [\App\Http\Controllers\PostController::class, 'getPosts'])->name('post.page');
 Route::post('/posts/create', [\App\Http\Controllers\PostController::class, 'addPostInDatabase']);
-Route::delete('/posts/delete', [\App\Http\Controllers\PostController::class, 'deletePostFromDatabase'])->name('posts.delete');
+Route::delete('/posts/{post}/delete', [\App\Http\Controllers\PostController::class, 'deletePostFromDatabase'])->name('posts.delete');

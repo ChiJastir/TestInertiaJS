@@ -33,8 +33,8 @@ class PostController extends Controller
         );
     }
 
-    public function deletePostFromDatabase(Request $post)
+    public function deletePostFromDatabase(Request $request, Post $post)
     {
-        Post::query()->where('id', '=', $post['id'])->delete();
+        $post->delete();
     }
 }

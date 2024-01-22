@@ -26,7 +26,7 @@ function deletePostFromDatabase(id){
         id: id
     })
 
-    deleteId.delete('/posts/delete')
+    deleteId.delete(`/posts/${id}/delete`)
 }
 </script>
 
