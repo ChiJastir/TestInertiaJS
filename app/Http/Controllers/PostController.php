@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Posts\StorePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,26 +12,14 @@ class PostController extends Controller
 {
     public function getPosts()
     {
-        $posts = Post::query()->get();
-
-        for ($i = 0; $i < $posts->count(); $i++) {
-            $posts[$i]['user'] = User::query()->find($posts[$i]['user_id']);
-        }
-
-        return Inertia::render('PostsPage', [
-            'posts' => $posts
-        ]);
+        $posts = Post::query()->with('user')->get();
+        return Inertia::render('PostsPage', compact('posts'));
     }
 
-    public function addPostInDatabase(Request $request)
+    public function addPostInDatabase(StorePostRequest $request)
     {
-        Post::query()->insert(
-            $request->validate([
-                'title' => ['required'],
-                'content' => ['required'],
-                'user_id' => ['required']
-            ])
-        );
+        $validated = $request->validated();
+        Post::create($validated);
     }
 
     public function deletePostFromDatabase(Request $request, Post $post)
