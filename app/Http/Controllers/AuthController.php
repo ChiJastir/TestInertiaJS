@@ -9,7 +9,8 @@ class AuthController extends Controller
 {
     public function login(LoginFormRequest $request): RedirectResponse
     {
-        $request['password'] = bcrypt($request['password']);
+        // лишнее действие)
+        // $request['password'] = bcrypt($request['password']);
 
         if(!auth()->attempt($request->validated())) {
             return redirect()
