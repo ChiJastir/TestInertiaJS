@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    // чтобы create работал, нужно добавить поля в разрешенные
+    protected $fillable = [
+        'title',
+        'content',
+        'user_id'
+    ];
+
+    // добавим связь с пользователем
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
